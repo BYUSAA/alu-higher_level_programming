@@ -1,15 +1,11 @@
 #!/usr/bin/python3
-"""
-Module 1-hbtn_header.py
-"""
+"""A script that displays the value of the x-request ID."""
 
 
-import urllib.request
-from sys import argv
+if __name__ == '__main__':
+    from urllib.request import urlopen
+    import sys
 
-
-if __name__ == "__main__":
-    req = urllib.request.Request(argv[1])
-    with urllib.request.urlopen(req) as response:
-        data = response.getheader('X-Request-Id')
-        print(data)
+    with urlopen(sys.argv[1]) as re:
+        header_var = re.headers.get('X-Request-Id')
+        print(header_var)
