@@ -1,13 +1,11 @@
 #!/usr/bin/python3
-"""
-Module 6-post_email.py
-"""
+"""A script that sends POST requests and displays the response"""
 
 
-import requests
-from sys import argv
+if __name__ == '__main__':
+    import requests
+    import sys
 
-
-if __name__ == "__main__":
-    resp = requests.post(argv[1], data={"email": argv[2]})
-    print(resp.text)
+    xyz = {'email': sys.argv[2]}
+    request = requests.post(sys.argv[1], data=xyz)
+    print("{}".format(request.text))
