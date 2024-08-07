@@ -1,15 +1,11 @@
 #!/usr/bin/python3
-"""
-Module 5-hbtn_header.py
-"""
-
-
-from sys import argv
-import requests
+"""Request to the URL and displays the value of the variable."""
 
 
 if __name__ == "__main__":
-    url = argv[1]
-    le = requests.get(url)
-    la = le.headers.get('X-Request-Id')
-    print(la)
+    import requests
+    import sys
+
+    respo = requests.get(sys.argv[1])
+    header_var = respo.headers.get('X-Request-Id')
+    print(header_var)
