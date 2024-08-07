@@ -1,20 +1,15 @@
 #!/usr/bin/python3
+""" A script that sends POST request
 """
-Module 2-post_email.py
-"""
 
 
-import urllib.parse
-import urllib.request
-from sys import argv
+if __name__ == '__main__':
+    from urllib.request import urlopen, Request
+    from urllib.parse import urlencode
+    import sys
+    data = urlencode({"email": sys.argv[2]
+                      }).encode("ascii")
 
-
-if __name__ == "__main__":
-    url = argv[1]
-    value = {"email": argv[2]}
-    data = urllib.parse.urlencode(value)
-    data = data.encode('ascii')
-    req = urllib.request.Request(url, data)
-    with urllib.request.urlopen(req) as response:
-        page = response.read().decode('utf-8')
-        print(page)
+    request = Request(sys.argv[1], data)
+    with urlopen(request) as response:
+        print(response.read().decode('utf-8'))
