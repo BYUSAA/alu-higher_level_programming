@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-num = 122
-while num > 96:
-    print("{}".format(chr(num) if num % 2 == 0 else chr(num - 32)), end="")
-    num -= 1
+for char in range(ord('z'), ord('Z') - 1, -1):
+    if (ord('a') <= char <= ord('z')) or (ord('A') <= char < ord('Z')):
+        if char % 2 != 0:
+            print("{}".format(chr(char).upper()), end='')
+        else:
+            print("{}".format(chr(char).lower()), end='')
