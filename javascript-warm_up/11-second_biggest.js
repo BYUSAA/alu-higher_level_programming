@@ -1,8 +1,13 @@
 #!/usr/bin/node
-const args = process.argv.slice(2).map(Number);
-if (args.length <= 1) {
-  console.log(0);
-} else {
-  const sortedArgs = args.sort((a, b) => b - a);
-  console.log(sortedArgs[1]);
+let max = 0;
+let secondMax = 0;
+for (const num of process.argv.slice(2).map(Number)) {
+  if (num > max) {
+    secondMax = max;
+    max = num;
+  }
+  if (num > secondMax && max > num) {
+    secondMax = num;
+  }
 }
+console.log(secondMax);
