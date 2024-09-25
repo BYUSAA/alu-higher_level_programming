@@ -1,3 +1,4 @@
 #!/usr/bin/node
-const args = process.argv.slice(2);
-console.log(args[0] || "No argument");
+const argv = process.argv.slice(2);
+const message = argv[0] ? argv[0] : 'No argument';
+console.log(message);
