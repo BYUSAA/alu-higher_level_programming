@@ -1,14 +1,9 @@
-// 101-sorted.js
-const dict = require('./101-data').dict;
-
-const newDict = {};
-
-for (const userId in dict) {
-  const occurrences = dict[userId];
-  if (!newDict[occurrences]) {
-    newDict[occurrences] = [];
-  }
-  newDict[occurrences].push(userId);
-}
-
-console.log(newDict);
+#!/usr/bin/node
+exports.dict = {
+  89: 1,
+  90: 2,
+  91: 1,
+  92: 3,
+  93: 1,
+  94: 2
+};
