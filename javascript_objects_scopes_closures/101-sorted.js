@@ -1,22 +1,13 @@
-#!/usr/bin/node
+#!/usr/bin/node // Informs the system to use Node.js to run this script
 
-// Import the 'dict' object from the './101-data' module.
-const inputDictionary = require('./101-data').dict;
+const inputDictionary = require('./101-data').dict; // Imports the `dict` property from the module '101-data'
 
-// Create an empty object to store the reversed dictionary.
-const reversedDictionary = {};
-
-// Iterate over the key-value pairs of the input dictionary using Object.entries().
-for (const [key, value] of Object.entries(inputDictionary)) {
-  // If the value is not already a key in the reversed dictionary, add it with the current key as its value.
-  if (reversedDictionary[value] === undefined) {
-    reversedDictionary[value] = [key];
-  } 
-  // If the value is already a key in the reversed dictionary, append the current key to its value array.
-  else {
-    reversedDictionary[value].push(key);
+const reversedDictionary = {}; // Initializes an empty object to store the reversed dictionary
+for (const [key, value] of Object.entries(inputDictionary)) { // Loops through each key-value pair in the input dictionary
+  if (reversedDictionary[value] === undefined) { // Checks if the value is not yet a key in the reversed dictionary
+    reversedDictionary[value] = [key]; // Creates a new array with the current key as its first element
+  } else {
+    reversedDictionary[value].push(key); // Adds the current key to the existing array for this value
   }
 }
-
-// Log the reversed dictionary to the console.
-console.log(reversedDictionary);
+console.log(reversedDictionary); // Outputs the reversed dictionary to the console
