@@ -1,9 +1,12 @@
 #!/usr/bin/node
 const fs = require('fs');
+const util = require('util');
 
-function readFileContent(filePath) {
+const readFile = util.promisify(fs.readFile);
+
+async function readFileContent(filePath) {
   try {
-    const data = fs.readFileSync(filePath, 'utf8');
+    const data = await readFile(filePath, 'utf8');
     console.log(data);
   } catch (err) {
     console.log(err);
