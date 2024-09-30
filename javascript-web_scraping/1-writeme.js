@@ -1,12 +1,16 @@
 #!/usr/bin/node
-const fs = require('fs').promises;
+const fs = require('fs');
 
-async function writeFileContent (filePath, content) {
-  try {
-    await fs.writeFile(filePath, content, 'utf8');
-  } catch (error) {
+function writeFileContent (filePath, content) {
+  const stream = fs.createWriteStream(filePath, { encoding: 'utf8' });
+
+  stream.write(content);
+
+  stream.on('error', (error) => {
     console.log(error);
-  }
+  });
+
+  stream.end();
 }
 
 writeFileContent(process.argv[2], process.argv[3]);
