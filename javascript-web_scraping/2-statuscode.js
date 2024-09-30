@@ -1,10 +1,9 @@
 #!/usr/bin/node
 const http = require('http');
 const https = require('https');
-const url = require('url');
 
 function fetchStatusCode (urlStr) {
-  const parsedUrl = url.parse(urlStr); // Parse the URL to detect the protocol
+  const parsedUrl = new URL(urlStr); // Using URL constructor instead of url.parse
 
   const protocol = parsedUrl.protocol === 'https:' ? https : http;
 
