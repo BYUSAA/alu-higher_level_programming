@@ -1,16 +1,16 @@
 #!/usr/bin/node
 const fs = require('fs');
-const util = require('util');
 
-const readFile = util.promisify(fs.readFile);
+function readFileContent(filePath) {
+  const stream = fs.createReadStream(filePath, 'utf8');
+  
+  stream.on('data', (chunk) => {
+    console.log(chunk);
+  });
 
-async function readFileContent(filePath) {
-  try {
-    const data = await readFile(filePath, 'utf8');
-    console.log(data);
-  } catch (err) {
+  stream.on('error', (err) => {
     console.log(err);
-  }
+  });
 }
 
 readFileContent(process.argv[2]);
