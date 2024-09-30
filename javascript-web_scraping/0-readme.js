@@ -1,9 +1,9 @@
 #!/usr/bin/node
-const fs = require('fs').promises;
+const fs = require('fs');
 
-async function readFileContent(filePath) {
+function readFileContent(filePath) {
   try {
-    const data = await fs.readFile(filePath, 'utf8');
+    const data = fs.readFileSync(filePath, 'utf8');
     console.log(data);
   } catch (err) {
     console.log(err);
