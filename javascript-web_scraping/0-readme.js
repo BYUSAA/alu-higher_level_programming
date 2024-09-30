@@ -1,9 +1,9 @@
 #!/usr/bin/node
 const fs = require('fs');
 
-function readFileContent(filePath) {
+function readFileContent (filePath) { // Added space before parentheses
   const stream = fs.createReadStream(filePath, 'utf8');
-  
+
   stream.on('data', (chunk) => {
     console.log(chunk);
   });
