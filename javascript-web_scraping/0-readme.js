@@ -13,4 +13,4 @@ function readFileContent (filePath) { // Added space before parentheses
   });
 }
 
-readFileContent(process.argv[2]);
+readFileContent(process.argv[2]); 
