@@ -1,13 +1,12 @@
 #!/usr/bin/node
-const fetch = require('node-fetch');
+const https = require('https');
 
-async function fetchStatusCode (url) {
-  try {
-    const response = await fetch(url);
-    console.log(`code: ${response.status}`);
-  } catch (err) {
+function fetchStatusCode (url) {
+  https.get(url, (res) => {
+    console.log(`code: ${res.statusCode}`);
+  }).on('error', (err) => {
     console.error(err);
-  }
+  });
 }
 
 fetchStatusCode(process.argv[2]);
