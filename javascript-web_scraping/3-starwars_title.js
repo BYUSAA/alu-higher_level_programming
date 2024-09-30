@@ -1,12 +1,14 @@
 #!/usr/bin/node
-const axios = require('axios');
+const fetch = require('node-fetch');
 
-const url = `https://swapi-api.hbtn.io/api/films/${process.argv[2]}`;
-
-axios.get(url)
-  .then(response => {
-    console.log(response.data.title);
-  })
-  .catch(error => {
+async function getFilmTitle(filmId) {
+  try {
+    const response = await fetch(`https://swapi-api.hbtn.io/api/films/${filmId}`);
+    const film = await response.json();
+    console.log(film.title);
+  } catch (error) {
     console.error(error);
-  });
+  }
+}
+
+getFilmTitle(process.argv[2]);
