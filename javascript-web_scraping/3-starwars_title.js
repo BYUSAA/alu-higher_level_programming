@@ -1,14 +1,13 @@
 #!/usr/bin/node
 const fetch = require('node-fetch');
 
-async function getFilmTitle(filmId) {
-  try {
-    const response = await fetch(`https://swapi-api.hbtn.io/api/films/${filmId}`);
-    const film = await response.json();
-    console.log(film.title);
-  } catch (error) {
-    console.error(error);
-  }
-}
+const url = `https://swapi-api.hbtn.io/api/films/${process.argv[2]}`;
 
-getFilmTitle(process.argv[2]);
+fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    console.log(data.title);
+  })
+  .catch(error => {
+    console.error(error);
+  });
