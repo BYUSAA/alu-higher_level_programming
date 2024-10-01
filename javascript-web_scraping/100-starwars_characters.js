@@ -1,15 +1,21 @@
-#!/usr/bin/node // Informs the system to use Node.js to run this script
+#!/usr/bin/node
+const movieId = process.argv.slice(2)[0];
+const request = require('request');
 
-const request = require('request'); // Imports the 'request' module to make HTTP requests
-const url = `https://swapi-api.hbtn.io/api/films/${process.argv[2]}`; // Constructs the URL using the film ID passed as a command-line argument
+const filmsUrl = `https://swapi-api.hbtn.io/api/films/${movieId}`;
 
-request(url, (err, res, body) => { // Makes a request to the URL and handles the response
-  if (!err) { // If no error occurred during the request
-    const characters = JSON.parse(body).characters; // Parses the response body and extracts the 'characters' array
-    characters.forEach(character => { // Iterates over each character URL in the array
-      request(character, (err, res, body) => { // Makes a request to each character URL to get character details
-        if (!err) { // If no error occurred during the request
-          console.log(JSON.parse(body).name); // Prints the name of the character
+request(filmsUrl, (error, response, body) => {
+  if (error) {
+    console.log(error);
+  } else {
+    const parseData = JSON.parse(body);
+    const characters = parseData.characters;
+    characters.forEach(charUrl => {
+      request(charUrl, (err, response, body) => {
+        if (err) console.log(err);
+        else {
+          const parseCharData = JSON.parse(body);
+          console.log(parseCharData.name);
         }
       });
     });
